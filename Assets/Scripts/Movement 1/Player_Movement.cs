@@ -7,6 +7,8 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] float speed = 4f;
     [SerializeField] float rotationSpeed = 2f;
 
+    [SerializeField] Transform head;
+
     CharacterController controller;
     
     // Start is called before the first frame update
@@ -20,6 +22,8 @@ public class Player_Movement : MonoBehaviour
     {
         Vector2 mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         transform.Rotate(Vector3.up, mouseInput.x * rotationSpeed);
+
+        head.Rotate(Vector3.left, mouseInput.y * rotationSpeed);
 
         Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         //controller.Move(input * speed * Time.deltaTime);
