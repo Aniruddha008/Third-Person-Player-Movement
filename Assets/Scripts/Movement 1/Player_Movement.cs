@@ -41,13 +41,22 @@ public class Player_Movement : MonoBehaviour
         
         Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         //controller.Move(input * speed * Time.deltaTime);
+        if (controller.isGrounded)
+            {
+                yVelocity = 0;
+                print(controller.isGrounded);
+                if (Input.GetButtonDown("Jump"))
+                {
+                    print("jump" + yVelocity);
+                    yVelocity = jumpSpeed;
+                    print("jump" + yVelocity);
+                }
+            }
         yVelocity -= gravity * Time.deltaTime;
         controller.Move(transform.TransformDirection(input * speed * Time.deltaTime + yVelocity * Vector3.up * Time.deltaTime));
 
-        if (Input.GetButtonDown("Jump"))
-        {
-             yVelocity = jumpSpeed;
-        }
+        
+        
 
         
     }
